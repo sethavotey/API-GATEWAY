@@ -1,3 +1,4 @@
+
 const express = require('express');
 const app = express()
 
@@ -35,18 +36,18 @@ function authRole(role) {
 //REDIRECT TO THE STUDENT MICROSERVICE
 app.use('/student',authToken, authRole('student'), (req, res) => {
     console.log("INSIDE API GATEWAY STUDENT ROUTE")
-    proxy.web(req, res, { target: 'http://44.212.42.66:5000' });
+    proxy.web(req, res, { target: 'http://3.85.166.3:5000' });
 })
 
 //REDIRECT TO THE TEACHER MICROSERVICE
 app.use('/teacher', authToken, authRole('teacher'),(req, res) => {
     console.log("INSIDE API GATEWAY TEACHER ROUTE")
-    proxy.web(req, res, { target: 'http://34.205.62.136:5001' });
+    proxy.web(req, res, { target: 'http://107.22.98.106:5001' });
 })
 
 //REDIRECT TO THE LOGIN(Authentication) MICROSERVICE
 app.use('/auth', (req, res) => {
-    proxy.web(req, res, { target: 'http://3.86.104.14:5002' });
+    proxy.web(req, res, { target: 'http://44.202.231.117:5002' });
 })
 
 app.listen(4000, () => {
